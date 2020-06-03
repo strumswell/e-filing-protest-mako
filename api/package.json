@@ -1,0 +1,26 @@
+{
+  "name": "e-filing-protest-mako",
+  "version": "1.0.0",
+  "description": "Prototype for the e-filing of protests in Germany as part of a university project. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/strumswell/e-filing-protest-mako.git"
+  },
+  "keywords": [
+    "rest"
+  ],
+  "author": "Philipp Bolte",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/strumswell/e-filing-protest-mako/issues"
+  },
+  "homepage": "https://github.com/strumswell/e-filing-protest-mako#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "swagger-ui-express": "^4.1.4"
+  }
+}
