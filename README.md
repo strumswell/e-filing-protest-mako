@@ -5,10 +5,10 @@ As part of a university project, we are going to look into the documentation of 
 ## Approach
 | Nr | Task | Status|
 |----|------|-------|
-|1.     |Define requirements      |🔁      |
-|2.     |Create API contract|🔴      |
-|3.     |Create REST API    |🔴     |
-|4.     |Generate documentation website   |🔴     |
+|1.     |Define requirements      |✅      |
+|2.     |Create API contract|✅      |
+|3.     |Create REST API    |🔁     |
+|4.     |Generate documentation website   |🔁     |
 |5.     |Create external frontend      |🔴      |
 |6.     |Create internal frontend      |🔴      |
 |7.     |Final testing     |🔴      |
