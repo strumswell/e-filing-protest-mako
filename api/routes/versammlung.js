@@ -9,12 +9,12 @@ function sendResponse(response, status, error, result) {
 //  Versammlung routes
 // ==================
 module.exports = (app) => {
-    // RUFE ALLE VERSAMMLUNGEN AB, SORTIERT
+    // Get all rallies
     app.get('/api/v1/versammlung', (request, response) => {
         let sql = "SELECT * FROM versammlungen";
         let query = pool.query(sql, (error, results) => {
-            //Somethings wrong interally
-            if (error) return sendResponse(response, 500, "Internal server error.", null);
+            // Somethings wrong interally
+            if (error) return sendResponse(response, 500, "Interner Fehler", null);
             // All good
             sortedResults = { offen: [], inBearbeitung: [], abgestimmt: [], abgesagt: [] }
             results.forEach(result => {
@@ -34,6 +34,19 @@ module.exports = (app) => {
                 }
             });
             sendResponse(response, 200, null, sortedResults);
+        });
+    });
+
+    // Get a specific rally
+    app.get('/api/v1/versammlung/:uuid', (request, response) => {
+        let sql = "SELECT * FROM versammlungen WHERE uuid='" + request.params.uuid + "'";
+        let query = pool.query(sql, (error, results) => {
+            // Somethings wrong interally
+            if (error) return sendResponse(response, 500, "Interner Fehler", null);
+            // UUID is unkown
+            if (results.length < 1) return sendResponse(response, 404, "Unbekannte UUID", null);
+            // All good
+            sendResponse(response, 200, null, results[0]);
         });
     });
 }
