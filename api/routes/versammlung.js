@@ -1,4 +1,5 @@
 const pool = require('../util/db');
+const { v4: uuidv4 } = require('uuid');
 
 // Send standardized response
 function sendResponse(response, status, error, result) {
@@ -47,6 +48,23 @@ module.exports = (app) => {
             if (results.length < 1) return sendResponse(response, 404, "Unbekannte UUID", null);
             // All good
             sendResponse(response, 200, null, results[0]);
+        });
+    });
+
+    // Create new rally
+    app.post('/api/v1/versammlung', (request, response) => {
+        let data = request.body;
+        // Generate UUID
+        data.uuid = uuidv4();
+        // Build query and execute
+        let sql = "INSERT INTO versammlungen SET ?";
+        let query = pool.query(sql, data, (error, results) => {
+            // Missing or wrong attributes used
+            if (error && error.code === "ER_NO_DEFAULT_FOR_FIELD") return sendResponse(response, 400, "Fehlerhafte Anfrage. Möglicherweise fehlen Attribute, check die Docs!", null);
+            // Somethings wrong interally, has "code" when DB doesn't respond. Body of node error!
+            if (error) return sendResponse(response, 500, "Interner Error", null);
+            // All good
+            sendResponse(response, 200, null, { "uuid": data.uuid });
         });
     });
 }
