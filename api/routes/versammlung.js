@@ -67,4 +67,24 @@ module.exports = (app) => {
             sendResponse(response, 200, null, { "uuid": data.uuid });
         });
     });
+
+    // Update specific rally
+    app.put('/api/v1/versammlung/:uuid', (request, response) => {
+        let data = request.body;
+        // Update DB
+        let sql = "UPDATE versammlungen SET ? where uuid='" + request.params.uuid + "'";
+        let status = ["offen", "inBearbeitung", "abgestimmt", "abgesagt"];
+        let query = pool.query(sql, data, (error, results) => {
+            // Missing or wrong attributes used
+            if (status.indexOf(data.status) == -1) return sendResponse(response, 400, "Fehlerhafte Anfrage. Möglicherweise fehlen Attribute, check die Docs!", null);
+            if (error && error.code === "ER_PARSE_ERROR") return sendResponse(response, 400, "Fehlerhafte Anfrage. Möglicherweise fehlen Attribute, check die Docs!", null);
+            //Somethings wrong interally, has "code" when DB doesn't respond. Body of node error!
+            if (error) return sendResponse(response, 500, "Interner Fehler", null);
+            // Id is unkown and no changes were made
+            if (results.affectedRows < 1) return sendResponse(response, 404, "Unbekannte UUID", null);
+            // All good
+            console
+            sendResponse(response, 200, null, "Versammlung aktualisiert!");
+        });
+    });
 }
