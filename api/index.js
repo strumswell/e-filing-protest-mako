@@ -6,9 +6,9 @@ const app = express()
 app.use(bodyParser.json());
 
 // Inject routes
-require('./routes/general')(app);
+require('./routes/docs')(app);
 require('./routes/versammlung')(app);
-require('./routes/swagger')(app);
+require('./routes/general')(app);
 
 // Listen for REST-Calls
 app.listen(3000, () => {
