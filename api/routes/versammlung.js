@@ -56,9 +56,11 @@ module.exports = (app) => {
         let data = request.body;
         // Generate UUID
         data.uuid = uuidv4();
+	console.log(data);
         // Build query and execute
         let sql = "INSERT INTO versammlungen SET ?";
         let query = pool.query(sql, data, (error, results) => {
+	    console.log(error);
             // Missing or wrong attributes used
             if (error && error.code === "ER_NO_DEFAULT_FOR_FIELD") return sendResponse(response, 400, "Fehlerhafte Anfrage. Möglicherweise fehlen Attribute, check die Docs!", null);
             // Somethings wrong interally, has "code" when DB doesn't respond. Body of node error!
