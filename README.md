@@ -7,11 +7,12 @@ As part of a university project, we are going to look into the documentation of 
 |----|------|-------|
 |1.     |Define requirements      |✅      |
 |2.     |Create API contract|✅      |
-|3.     |Create REST API    |🔁     |
-|4.     |Generate documentation website   |🔁     |
-|5.     |Create external frontend      |🔴      |
-|6.     |Create internal frontend      |🔴      |
-|7.     |Final testing     |🔴      |
+|3.     |Create REST API    |✅    |
+|4.     |Generate documentation website   |✅     |
+|5.     |Create external frontend      |✅      |
+|6.     |Create internal frontend      |✅      |
+|7.     |Final testing     |🔁      |
+|8.     |Write seminar paper    |🔴      |
 
 Legend: ✅ Done, 🔁 Doing, 🔴 Open
 
