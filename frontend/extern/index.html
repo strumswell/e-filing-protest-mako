@@ -138,7 +138,7 @@ The above copyright notice and this permission notice shall be included in all c
             <script>
               function createVersammlung() {
                 let output = document.getElementById("outputPOST");
-                output.value += "1) Button gedrückt!\n";
+                output.value += "Button gedrückt!\n";
                 let textVorAnfrage = document.getElementById("textVorAnfragePOST");
                 let textNachAnfrage = document.getElementById("textNachAnfragePOST");
                 let data = {
@@ -152,8 +152,8 @@ The above copyright notice and this permission notice shall be included in all c
                   "kontakt": document.getElementById("kontakt").value,
                   "hilfsmittel": document.getElementById("hilfsmittel").value,
                 }
-                output.value += "2) Body für Anfrage gebildet: \n" + JSON.stringify(data, null, 4) + "\n";
-                output.value += "3) Setze API-Call ab (POST) mit Body. \n";
+                output.value += "Body für Anfrage gebildet: \n" + JSON.stringify(data, null, 4) + "\n";
+                output.value += "Setze API-Call ab (POST) mit Body. \n";
                 textVorAnfrage.hidden = true;
                 fetch('http://localhost:3000/api/v1/versammlung', {
                   method: 'POST', // or 'PUT'
@@ -165,7 +165,7 @@ The above copyright notice and this permission notice shall be included in all c
                 .then(response => response.json())
                 .then(data => {
                   console.log('Success:', data);
-                  output.value += "4) Antwort von API: " + data.result.uuid;
+                  output.value += "Antwort von API: " + data.result.uuid + "\n";
                   textNachAnfrage.innerHTML = "<b>UUID Ihrer Versammlung:</b> " + data.result.uuid
                   textNachAnfrage.hidden = false;
                 })
@@ -218,8 +218,8 @@ The above copyright notice and this permission notice shall be included in all c
                   let output = document.getElementById("outputGET");
                   let textVorAnfrage = document.getElementById("textVorAnfrageGET");
                   let textNachAnfrage = document.getElementById("textNachAnfrageGET");
-                  output.value += "1) Button gedrückt!";
-                  output.value += "\n2) Setze API-Call ab für "+uuid;
+                  output.value += "Button gedrückt!\n";
+                  output.value += "Setze API-Call ab für "+uuid+"\n";
                   fetch('http://localhost:3000/api/v1/versammlung/' + uuid, {
                     method: 'GET', // or 'PUT'
                     headers: {
@@ -229,7 +229,7 @@ The above copyright notice and this permission notice shall be included in all c
                   .then(response => response.json())
                   .then(data => {
                     console.log('Success:', data);
-                    output.value += "\n3) Antwort von API: \n"+JSON.stringify(data, null, 4);
+                    output.value += "Antwort von API: \n"+JSON.stringify(data, null, 4)+"\n";
                     textVorAnfrage.hidden = true;
                     textNachAnfrage.innerHTML = "<b>Leiter:</b> " 
                       + data.result.vorname + " " + data.result.nachname + "<br>"
