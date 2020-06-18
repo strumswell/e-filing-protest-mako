@@ -168,7 +168,8 @@
         "inBearbeitung",
         "abgestimmt",
         "abgesagt"
-      ]
+      ],
+      "example": "offen"
     },
     "Versammlung": {
       "type": "object",
@@ -214,14 +215,7 @@
           "example": "Lautsprecherwagen, ..."
         },
         "status": {
-          "type": "string",
-          "enum": [
-            "offen",
-            "inBearbeitung",
-            "abgestimmt",
-            "abgesagt"
-          ],
-          "example": "offen"
+          "$ref": "#/definitions/Status"
         },
         "bearbeiter": {
           "type": "string",
