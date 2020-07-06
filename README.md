@@ -2,6 +2,8 @@
 ## Goal
 As part of a university project, we are going to look into the documentation of REST APIs with the OpenAPI specification. To further reinforce the meaning of a well documented api, a prototype for the e-filing of protests in Germany is going to be created in this repository.
 
+Demo: https://www.youtube.com/watch?v=A6cmJHiSboc
+
 ## Setup
 - Tested with Node v12.16.3
 - Start API
@@ -21,7 +23,7 @@ As part of a university project, we are going to look into the documentation of 
 - Start frontend
     - use apache, nginx or startup a dev server i.e. with live-server (`npm i live-server`)
     - you might want to change the API URL in both `index.html` files if you are not running the API on your localhost
-    
+
 - MySQL table
     - uuid : varchar(128)
     - vorname : varchar(128)
