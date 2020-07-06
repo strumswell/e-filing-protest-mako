@@ -1,0 +1,162 @@
+swagger: '2.0'
+info:
+  title: Versammlungs-API
+  description: >-
+    Beispiel-API zur Verwaltung von Versammlungen in Deutschland für eine
+    fiktive Versammlungsbehörde
+  version: 1.0.0
+host: 'localhost:3000'
+basePath: /api/v1
+schemes:
+  - http
+paths:
+  /versammlung:
+    get:
+      tags:
+        - Versammlung
+      summary: Antwortet mit allen Versammlungen nach Tag
+      description: 'Je nach Tag (offen, inBearbeitung, abgestimmt, abgesagt)'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: OK
+        '500':
+          description: Interner Fehler
+    post:
+      tags:
+        - Versammlung
+      summary: Anlegen einer neuen Versammlung
+      description: Erlaubt einem Bürger das Anlegen einer Versammlung
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Anzulegende Versammlung
+          required: true
+          schema:
+            allOf:
+              - $ref: '#/definitions/Versammlung'
+              - required:
+                  - uuid
+                  - vorname
+                  - nachname
+                  - motto
+                  - start
+                  - ende
+                  - route
+                  - kontakt
+                  - teilnehmer
+                  - hilfsmittel
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Fehlerhafte Anfrage
+        '500':
+          description: Interner Fehler
+  '/versammlung/{uuid}':
+    get:
+      tags:
+        - Versammlung
+      summary: Antwortet mit einer spezifischen Versammlung
+      description: >-
+        Je nach angegebener UUID kann eine Versammlung direkt adressiert und
+        abegfragt werden.
+      produces:
+        - application/json
+      parameters:
+        - name: uuid
+          in: path
+          description: UUID der Versammlung
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Unbekannte UUID
+        '500':
+          description: Interner Fehler
+    put:
+      tags:
+        - Versammlung
+      summary: Bearbeiten einer spezifischen Versammlung
+      description: Erlaubt das Abändern von Versammlungen.
+      produces:
+        - application/json
+      parameters:
+        - name: uuid
+          in: path
+          description: UUID der Versammlung
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Anzulegende Versammlung
+          required: true
+          schema:
+            allOf:
+              - $ref: '#/definitions/Versammlung'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Fehlerhafte Anfrage
+        '404':
+          description: Unbekannte UUID
+        '500':
+          description: Interner Fehler
+definitions:
+  Status:
+    type: string
+    enum:
+      - offen
+      - inBearbeitung
+      - abgestimmt
+      - abgesagt
+    example: offen
+  Versammlung:
+    type: object
+    properties:
+      uuid:
+        type: string
+        example: dd449e2d-e769-40b4-8a8f-cb2baf9152b3
+      vorname:
+        type: string
+        example: Philipp
+      nachname:
+        type: string
+        example: Bolte
+      motto:
+        type: string
+        example: Fuer den Sommer!
+      start:
+        type: string
+        example: '2020-07-30 13:00:00'
+      ende:
+        type: string
+        example: '2020-07-30 18:00:00'
+      route:
+        type: string
+        example: Campus der TH-Brandenburg
+      kontakt:
+        type: string
+        example: 0173 88886321
+      teilnehmer:
+        type: integer
+        example: '100'
+      hilfsmittel:
+        type: string
+        example: 'Lautsprecherwagen, ...'
+      status:
+        $ref: '#/definitions/Status'
+      bearbeiter:
+        type: string
+        example: bearbeiter01
+    xml:
+      name: Users
+externalDocs:
+  description: GitHub Repository der API
+  url: 'https://github.com/strumswell/e-filing-protest-mako'
