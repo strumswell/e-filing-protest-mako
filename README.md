@@ -21,6 +21,21 @@ As part of a university project, we are going to look into the documentation of 
 - Start frontend
     - use apache, nginx or startup a dev server i.e. with live-server (`npm i live-server`)
     - you might want to change the API URL in both `index.html` files if you are not running the API on your localhost
+    
+- MySQL table
+    - uuid : varchar(128)
+    - vorname : varchar(128)
+    - nachname : varchar(128)
+    - motto : varchar(256)
+    - route : text
+    - kontakt : varchar(128)
+    - teilnehmer : int(11)
+    - hilfsmittel : text
+    - start : datetime
+    - ende : datetime
+    - status : enum('offen','inBearbeitung','abgestimmt','abgesagt')
+    - bearbeiter : varchar(128)
+    - erstellt_am : timestamp
 
 ## Approach
 | Nr | Task | Status|
