@@ -2,6 +2,26 @@
 ## Goal
 As part of a university project, we are going to look into the documentation of REST APIs with the OpenAPI specification. To further reinforce the meaning of a well documented api, a prototype for the e-filing of protests in Germany is going to be created in this repository.
 
+## Setup
+- Tested with Node v12.16.3
+- Start API
+    - `cd api`
+    - define environment variables for database `touch .env` with the following contents:
+    ```
+    SQL_HOST=192.168.0.1
+    SQL_USER=mike
+    SQL_PASSWORD=MySecretPassword
+    SQL_DATABASE=efiling
+    API_BASE_URL=http://localhost/
+    ```
+    - you might want to change the base url in the `swagger.yml` if you want it to work
+    - `npm init` to install dependencies
+    - `node .` to start up the API
+
+- Start frontend
+    - use apache, nginx or startup a dev server i.e. with live-server (`npm i live-server`)
+    - you might want to change the API URL in both `index.html` files if you are not running the API on your localhost
+
 ## Approach
 | Nr | Task | Status|
 |----|------|-------|
@@ -12,7 +32,7 @@ As part of a university project, we are going to look into the documentation of 
 |5.     |Create external frontend      |✅      |
 |6.     |Create internal frontend      |✅      |
 |7.     |Final testing     |✅      |
-|8.     |Write seminar paper    |🔁      |
+|8.     |Write seminar paper    |✅      |
 
 Legend: ✅ Done, 🔁 Doing, 🔴 Open
 
