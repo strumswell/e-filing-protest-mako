@@ -17,7 +17,7 @@ Demo: https://www.youtube.com/watch?v=A6cmJHiSboc
     API_BASE_URL=http://localhost/
     ```
     - you might want to change the base url in the `swagger.yml` if you want it to work
-    - `npm init` to install dependencies
+    - `npm install` to install dependencies
     - `node .` to start up the API
 
 - Start frontend
